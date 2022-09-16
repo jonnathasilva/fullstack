@@ -4,11 +4,11 @@ export const Vehicle = mongoose.model(
   "Vehicle",
   new Schema(
     {
-      veiculo: { type: String, required: true },
-      marca: { type: String, required: true },
-      ano: { type: Number, required: true },
-      descricao: { type: String, required: true },
-      vendido: { type: Boolean, required: true },
+      vehicle: { type: String, required: true },
+      brand: { type: String, required: true },
+      year: { type: Number, required: true },
+      description: { type: String, required: true },
+      sold: { type: Boolean, required: true },
     },
     { timestamps: true }
   )
