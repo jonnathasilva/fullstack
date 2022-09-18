@@ -155,5 +155,15 @@ export default class vehicleController {
 
   static async getSearch(req, res) {
     const { search } = req.body;
+
+    if (!search || search === " ") {
+      return res.status(400);
+    }
+
+    const Search = await Vehicle.find({
+      $or: [{ vehicle: search }, { brand: search }, { description: search }],
+    });
+
+    return res.status(200).json(Search);
   }
 }
