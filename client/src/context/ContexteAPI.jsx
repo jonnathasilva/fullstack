@@ -1,14 +1,14 @@
-import { Children, createContext, useState } from "react";
+import { Children, createContext, useEffect, useState } from "react";
 import api from "../utils/api";
 
 const Context = createContext();
 
 function APIProvider({ children }) {
   const [search, setSearch] = useState();
+  const [vehicle, setVehicle] = useState();
   console.log(search);
 
   async function GetSearch(Search) {
-    console.log(Search);
     await api
       .post("/veiculos/find", { search: Search })
       .then(({ data }) => {
@@ -19,7 +19,21 @@ function APIProvider({ children }) {
       });
   }
 
-  return <Context.Provider value={{ GetSearch }}>{children}</Context.Provider>;
+  async function GetAll() {
+    await api.get("/veiculos").then(({ data }) => {
+      setVehicle(data);
+    });
+  }
+
+  useEffect(() => {
+    GetAll();
+  }, []);
+
+  return (
+    <Context.Provider value={{ GetSearch, vehicle }}>
+      {children}
+    </Context.Provider>
+  );
 }
 
 export { Context, APIProvider };
