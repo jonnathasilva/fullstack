@@ -4,15 +4,15 @@ import api from "../utils/api";
 const Context = createContext();
 
 function APIProvider({ children }) {
-  const [search, setSearch] = useState();
   const [vehicle, setVehicle] = useState();
-  console.log(search);
+  const [vehicleById, setVehicleById] = useState();
 
   async function GetSearch(Search) {
     await api
       .post("/veiculos/find", { search: Search })
       .then(({ data }) => {
-        setSearch(data);
+        console.log(data);
+        setVehicle(data);
       })
       .catch((err) => {
         console.log(err);
@@ -25,12 +25,18 @@ function APIProvider({ children }) {
     });
   }
 
+  async function GetById(id) {
+    await api.get(`/veiculos/${id}`).then(({ data }) => {
+      setVehicleById(data);
+    });
+  }
+
   useEffect(() => {
     GetAll();
   }, []);
 
   return (
-    <Context.Provider value={{ GetSearch, vehicle }}>
+    <Context.Provider value={{ GetSearch, vehicle, GetById, vehicleById }}>
       {children}
     </Context.Provider>
   );
