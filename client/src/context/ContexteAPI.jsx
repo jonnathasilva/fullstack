@@ -6,6 +6,12 @@ const Context = createContext();
 function APIProvider({ children }) {
   const [vehicle, setVehicle] = useState();
   const [vehicleById, setVehicleById] = useState();
+  const [isModal, setIsModal] = useState(false);
+
+  function modal(e) {
+    e.preventDefault();
+    setIsModal(isModal ? false : true);
+  }
 
   async function GetSearch(Search) {
     await api
@@ -36,7 +42,9 @@ function APIProvider({ children }) {
   }, []);
 
   return (
-    <Context.Provider value={{ GetSearch, vehicle, GetById, vehicleById }}>
+    <Context.Provider
+      value={{ GetSearch, vehicle, GetById, vehicleById, isModal, modal }}
+    >
       {children}
     </Context.Provider>
   );

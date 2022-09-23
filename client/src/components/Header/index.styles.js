@@ -19,6 +19,14 @@ export const SectionLogo = styled.div`
     font-size: 23px;
     text-transform: uppercase;
   }
+
+  @media (max-width: 500px) {
+    flex: 1.3;
+
+    h1 {
+      margin-left: 5px;
+    }
+  }
 `;
 
 export const SectionSearch = styled.form`
