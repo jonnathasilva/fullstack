@@ -27,6 +27,7 @@ export const Header = styled.div`
 
 export const ContainerVehicle = styled.div`
   display: flex;
+  flex: 1;
   gap: 15px;
 
   @media (max-width: 500px) {

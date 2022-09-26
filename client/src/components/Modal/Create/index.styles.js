@@ -26,6 +26,8 @@ export const Container = styled.div`
 `;
 
 export const Form = styled.form`
+  height: 90%;
+
   button {
     text-transform: uppercase;
   }

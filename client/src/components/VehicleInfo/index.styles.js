@@ -42,7 +42,8 @@ export const Info = styled.div`
   }
 
   #description {
-    flex: 1;
+    height: 230px;
+    width: 100%;
     overflow: hidden;
     word-break: break-all;
   }

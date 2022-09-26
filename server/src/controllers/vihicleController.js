@@ -157,7 +157,8 @@ export default class vehicleController {
     const { search } = req.body;
 
     if (!search || search === " ") {
-      return res.status(400);
+      const vihicles = await Vehicle.find();
+      return res.status(200).json(vihicles);
     }
 
     const Search = await Vehicle.find({

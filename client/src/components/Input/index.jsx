@@ -1,6 +1,6 @@
 import * as C from "./index.styles";
 
-function Input({ type, name, placeholder, onChange, value }) {
+function Input({ register, type, name, placeholder, value, errorName }) {
   return (
     <C.Container>
       <label htmlFor={name}>{placeholder}</label>
@@ -10,8 +10,9 @@ function Input({ type, name, placeholder, onChange, value }) {
         id={name}
         value={value}
         placeholder={placeholder}
-        onChange={onChange}
+        {...register(`${name}`)}
       />
+      <p>{errorName}</p>
     </C.Container>
   );
 }
