@@ -20,7 +20,7 @@ const schema = yup.object({
 });
 
 function Add() {
-  const { modal, isModal } = useContext(Context);
+  const { modal, isModal, ADD } = useContext(Context);
   const {
     register,
     handleSubmit,
@@ -28,7 +28,7 @@ function Add() {
   } = useForm({ resolver: yupResolver(schema) });
 
   function Submit(data) {
-    console.log(data);
+    ADD(data);
   }
 
   return (
@@ -61,18 +61,27 @@ function Add() {
             errorName={errors?.year?.message}
           />
 
-          <Input type="checkbox" name="sold" register={register} />
+          <Input
+            type="checkbox"
+            placeholder="Vendido"
+            name="sold"
+            register={register}
+            isInputs={true}
+          />
 
           <Input
             name="description"
             placeholder="Descrição"
             type="text"
             register={register}
+            isDescription={true}
             errorName={errors?.description?.message}
           />
 
-          <input type="submit" value="ADD" />
-          <button onClick={modal}>Fecha</button>
+          <div className="submit">
+            <input type="submit" value="ADD" />
+            <button onClick={modal}>Fecha</button>
+          </div>
         </C.Form>
       </C.Container>
     </C.Modal>

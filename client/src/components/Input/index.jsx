@@ -1,8 +1,17 @@
 import * as C from "./index.styles";
 
-function Input({ register, type, name, placeholder, value, errorName }) {
+function Input({
+  register,
+  type,
+  name,
+  placeholder,
+  value,
+  errorName,
+  isInputs,
+  isDescription,
+}) {
   return (
-    <C.Container>
+    <C.Container isInput={isInputs} isDescription={isDescription}>
       <label htmlFor={name}>{placeholder}</label>
       <input
         type={type}

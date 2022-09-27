@@ -14,7 +14,7 @@ export const Modal = styled.div`
 
 export const Container = styled.div`
   background-color: #e2e4e1;
-  width: 75%;
+  width: 50%;
   height: 75%;
   padding: 15px;
 
@@ -23,12 +23,35 @@ export const Container = styled.div`
     font-weight: 400;
     color: #353f46;
   }
+
+  @media (max-width: 500px) {
+    width: 90%;
+  }
 `;
 
 export const Form = styled.form`
   height: 90%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 
-  button {
+  .submit {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 60px;
+  }
+
+  .submit button,
+  .submit input {
     text-transform: uppercase;
+    width: 150px;
+    height: 50px;
+    border: none;
+    background-color: #45535a;
+    color: #eeefed;
+    font-size: 1rem;
+    cursor: pointer;
   }
 `;

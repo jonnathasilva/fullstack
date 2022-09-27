@@ -23,7 +23,7 @@ export default class vehicleController {
   }
 
   static async createVehicle(req, res) {
-    const { vehicle, brand, year, description } = req.body;
+    const { vehicle, brand, year, description, sold } = req.body;
 
     if (!vehicle || vehicle === " ") {
       return res
@@ -51,7 +51,7 @@ export default class vehicleController {
         brand,
         year,
         description,
-        sold: false,
+        sold,
       });
 
       return res.status(200).json(newVehicle);

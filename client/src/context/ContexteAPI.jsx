@@ -17,7 +17,6 @@ function APIProvider({ children }) {
     await api
       .post("/veiculos/find", { search: Search })
       .then(({ data }) => {
-        console.log(data);
         setVehicle(data);
       })
       .catch((err) => {
@@ -37,13 +36,23 @@ function APIProvider({ children }) {
     });
   }
 
+  async function ADD(data) {
+    await api
+      .post("/veiculos", data)
+      .then(({ data }) => {
+        setIsModal(false);
+        GetAll();
+      })
+      .catch((err) => console.log(err));
+  }
+
   useEffect(() => {
     GetAll();
   }, []);
 
   return (
     <Context.Provider
-      value={{ GetSearch, vehicle, GetById, vehicleById, isModal, modal }}
+      value={{ GetSearch, vehicle, GetById, vehicleById, isModal, modal, ADD }}
     >
       {children}
     </Context.Provider>
