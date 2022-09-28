@@ -7,9 +7,11 @@ import { Context } from "../../context/ContexteAPI";
 import Vehicles from "../Vehicle";
 import VehicleInfo from "../VehicleInfo";
 import Add from "../Modal/Create";
+import Edit from "../Modal/Edit";
 
 function Main() {
-  const { vehicle, GetById, vehicleById, modal } = useContext(Context);
+  const { vehicle, GetById, vehicleById, modal, modalEdit } =
+    useContext(Context);
 
   return (
     <C.Container>
@@ -25,10 +27,15 @@ function Main() {
       <C.ContainerVehicle>
         <Vehicles vehicle={vehicle} GetById={GetById} />
 
-        {vehicleById ? <VehicleInfo vehicleById={vehicleById} /> : ""}
+        {vehicleById ? (
+          <VehicleInfo vehicleById={vehicleById} modalEdit={modalEdit} />
+        ) : (
+          " "
+        )}
       </C.ContainerVehicle>
 
       <Add />
+      <Edit />
     </C.Container>
   );
 }

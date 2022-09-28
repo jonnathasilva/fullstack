@@ -9,6 +9,7 @@ function Input({
   errorName,
   isInputs,
   isDescription,
+  checked,
 }) {
   return (
     <C.Container isInput={isInputs} isDescription={isDescription}>
@@ -17,8 +18,9 @@ function Input({
         type={type}
         name={name}
         id={name}
-        value={value}
+        defaultValue={value}
         placeholder={placeholder}
+        defaultChecked={checked}
         {...register(`${name}`)}
       />
       <p>{errorName}</p>

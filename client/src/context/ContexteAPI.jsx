@@ -7,10 +7,14 @@ function APIProvider({ children }) {
   const [vehicle, setVehicle] = useState();
   const [vehicleById, setVehicleById] = useState();
   const [isModal, setIsModal] = useState(false);
+  const [isModalEdit, setIsModalEdit] = useState(false);
 
-  function modal(e) {
-    e.preventDefault();
+  function modal() {
     setIsModal(isModal ? false : true);
+  }
+
+  function modalEdit() {
+    setIsModalEdit(isModalEdit ? false : true);
   }
 
   async function GetSearch(Search) {
@@ -39,8 +43,18 @@ function APIProvider({ children }) {
   async function ADD(data) {
     await api
       .post("/veiculos", data)
-      .then(({ data }) => {
+      .then(() => {
         setIsModal(false);
+        GetAll();
+      })
+      .catch((err) => console.log(err));
+  }
+
+  async function editVehicle(data, id) {
+    await api
+      .patch(`/veiculos/${id}`, data)
+      .then(() => {
+        setIsModalEdit(false);
         GetAll();
       })
       .catch((err) => console.log(err));
@@ -52,7 +66,18 @@ function APIProvider({ children }) {
 
   return (
     <Context.Provider
-      value={{ GetSearch, vehicle, GetById, vehicleById, isModal, modal, ADD }}
+      value={{
+        GetSearch,
+        vehicle,
+        GetById,
+        vehicleById,
+        isModal,
+        modal,
+        ADD,
+        modalEdit,
+        isModalEdit,
+        editVehicle,
+      }}
     >
       {children}
     </Context.Provider>
