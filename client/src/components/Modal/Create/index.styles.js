@@ -4,7 +4,7 @@ export const Modal = styled.div`
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.7);
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   display: ${(props) => (props.isModal ? "flex" : "none")};
@@ -40,7 +40,7 @@ export const Form = styled.form`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 60px;
+    gap: 10px;
   }
 
   .submit button,

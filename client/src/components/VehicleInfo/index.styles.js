@@ -22,6 +22,10 @@ export const Info = styled.div`
   gap: 20px;
   padding: 10px;
 
+  h2 {
+    color: #49886e;
+  }
+
   .ContainerSubInfo {
     height: 70px;
     display: flex;

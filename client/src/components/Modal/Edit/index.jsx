@@ -1,11 +1,12 @@
 import * as C from "../Create/index.styles";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import * as yup from "yup";
 
 import Input from "../../Input";
+import InputCheckbox from "../../InputCheckbox";
 import { Context } from "../../../context/ContexteAPI";
 
 const schema = yup.object({
@@ -20,12 +21,11 @@ const schema = yup.object({
 });
 
 function Edit() {
-  const { isModalEdit, modalEdit, vehicleById, editVehicle } =
+  const { isModalEdit, modalEdit, vehicleById, editVehicle, Delete } =
     useContext(Context);
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
@@ -66,13 +66,12 @@ function Edit() {
             errorName={errors?.year?.message}
           />
 
-          <Input
+          <InputCheckbox
             type="checkbox"
             placeholder="Vendido"
             name="sold"
             checked={vehicleById?.sold}
             register={register}
-            isInputs={true}
           />
 
           <Input
@@ -86,6 +85,13 @@ function Edit() {
           />
 
           <div className="submit">
+            <button
+              onClick={() => {
+                Delete(vehicleById?._id);
+              }}
+            >
+              Excluir
+            </button>
             <input type="submit" value="EDITAR" />
             <button onClick={modalEdit}>Fecha</button>
           </div>

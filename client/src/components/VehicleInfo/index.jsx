@@ -34,7 +34,10 @@ function VehicleInfo({ vehicleById, modalEdit }) {
         </button>
         <BsTagFill
           size={25}
-          style={{ color: "#354046", marginRight: "15px" }}
+          style={{
+            color: vehicleById?.sold ? "#49886e" : "#354046",
+            marginRight: "15px",
+          }}
         />
       </C.Buttons>
     </C.Vehicle>

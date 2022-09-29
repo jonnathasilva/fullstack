@@ -60,6 +60,18 @@ function APIProvider({ children }) {
       .catch((err) => console.log(err));
   }
 
+  async function Delete(id) {
+    console.log(id);
+    await api
+      .delete(`/veiculos/${id}`)
+      .then(() => {
+        setIsModalEdit(false);
+        setVehicleById("");
+        GetAll();
+      })
+      .catch((err) => console.log(err));
+  }
+
   useEffect(() => {
     GetAll();
   }, []);
@@ -77,6 +89,7 @@ function APIProvider({ children }) {
         modalEdit,
         isModalEdit,
         editVehicle,
+        Delete,
       }}
     >
       {children}

@@ -17,7 +17,10 @@ function Vehicles({ vehicle, GetById }) {
             <h4>{vehicle.brand}</h4>
             <div>
               <p>{vehicle.vehicle}</p>
-              <BsTagFill size={25} color={"#354046"} />
+              <BsTagFill
+                size={25}
+                style={{ color: vehicle?.sold ? "#49886e" : "#354046" }}
+              />
             </div>
             <p>{vehicle.year}</p>
           </C.Cart>

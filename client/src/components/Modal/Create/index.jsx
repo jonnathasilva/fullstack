@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import Input from "../../Input";
+import InputCheckbox from "../../InputCheckbox";
 import { Context } from "../../../context/ContexteAPI";
 
 const schema = yup.object({
@@ -61,12 +62,11 @@ function Add() {
             errorName={errors?.year?.message}
           />
 
-          <Input
+          <InputCheckbox
             type="checkbox"
             placeholder="Vendido"
             name="sold"
             register={register}
-            isInputs={true}
           />
 
           <Input

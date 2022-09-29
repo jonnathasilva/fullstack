@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: ${(props) => (props.isInput ? "row-reverse" : "column")};
-  justify-content: ${(props) => (props.isInput ? "flex-end" : "normal")};
-  align-items: ${(props) => (props.isInput ? "center" : "normal")};
+  flex-direction: column;
+  justify-content: normal;
+  align-items: normal;
   gap: 0 10px;
   width: ${(props) => (props.isDescription ? "100% " : "calc(100% / 2)")};
   padding: 0 5px;
@@ -16,6 +16,7 @@ export const Container = styled.div`
     padding: 5px;
     outline: none;
   }
+
   p {
     color: red;
   }

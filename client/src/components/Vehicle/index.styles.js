@@ -25,6 +25,13 @@ export const AllVehicle = styled.div`
   ::-webkit-scrollbar {
     width: 5px;
     overflow: auto;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  ::-webkit-scrollbar-track {
     background-color: #aaa;
   }
 `;
