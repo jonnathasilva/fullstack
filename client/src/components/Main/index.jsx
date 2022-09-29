@@ -35,7 +35,7 @@ function Main() {
       </C.ContainerVehicle>
 
       <Add />
-      <Edit />
+      {vehicleById ? <Edit vehicleById={vehicleById} /> : ""}
     </C.Container>
   );
 }

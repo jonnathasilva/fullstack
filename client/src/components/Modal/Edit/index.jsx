@@ -10,7 +10,7 @@ import InputCheckbox from "../../InputCheckbox";
 import { Context } from "../../../context/ContexteAPI";
 
 const schema = yup.object({
-  vehicle: yup.string().required("Obrigatório!"),
+  vehicle: yup.string().required("Obrigatório"),
   brand: yup.string().required("Obrigatório"),
   year: yup
     .string()
@@ -20,9 +20,8 @@ const schema = yup.object({
   description: yup.string().required("Obrigatório"),
 });
 
-function Edit() {
-  const { isModalEdit, modalEdit, vehicleById, editVehicle, Delete } =
-    useContext(Context);
+function Edit({ vehicleById }) {
+  const { isModalEdit, modalEdit, editVehicle, Delete } = useContext(Context);
   const {
     register,
     handleSubmit,
@@ -44,7 +43,7 @@ function Edit() {
             placeholder="Veículo"
             type="text"
             register={register}
-            value={vehicleById?.vehicle}
+            value={vehicleById.vehicle}
             errorName={errors?.vehicle?.message}
           />
 
@@ -53,7 +52,7 @@ function Edit() {
             placeholder="Marca"
             type="text"
             register={register}
-            value={vehicleById?.brand}
+            value={vehicleById.brand}
             errorName={errors?.brand?.message}
           />
 
@@ -62,7 +61,7 @@ function Edit() {
             placeholder="Ano"
             type="text"
             register={register}
-            value={vehicleById?.year}
+            value={vehicleById.year}
             errorName={errors?.year?.message}
           />
 
@@ -70,7 +69,7 @@ function Edit() {
             type="checkbox"
             placeholder="Vendido"
             name="sold"
-            checked={vehicleById?.sold}
+            checked={vehicleById.sold}
             register={register}
           />
 
@@ -78,7 +77,7 @@ function Edit() {
             name="description"
             placeholder="Descrição"
             type="text"
-            value={vehicleById?.description}
+            value={vehicleById.description}
             register={register}
             isDescription={true}
             errorName={errors?.description?.message}
@@ -87,7 +86,7 @@ function Edit() {
           <div className="submit">
             <button
               onClick={() => {
-                Delete(vehicleById?._id);
+                Delete(vehicleById._id);
               }}
             >
               Excluir

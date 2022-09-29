@@ -55,6 +55,7 @@ function APIProvider({ children }) {
       .patch(`/veiculos/${id}`, data)
       .then(() => {
         setIsModalEdit(false);
+        setVehicleById();
         GetAll();
       })
       .catch((err) => console.log(err));
