@@ -25,11 +25,13 @@ function Add() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
   function Submit(data) {
     ADD(data);
+    reset();
   }
 
   return (
