@@ -30,8 +30,7 @@ function Add() {
   } = useForm({ resolver: yupResolver(schema) });
 
   function Submit(data) {
-    ADD(data);
-    reset();
+    ADD(data, reset);
   }
 
   return (
@@ -82,7 +81,14 @@ function Add() {
 
           <div className="submit">
             <input type="submit" value="ADD" />
-            <button onClick={modal}>Fecha</button>
+            <button
+              onClick={() => {
+                modal();
+                reset();
+              }}
+            >
+              Fecha
+            </button>
           </div>
         </C.Form>
       </C.Container>

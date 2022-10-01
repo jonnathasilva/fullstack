@@ -40,22 +40,24 @@ function APIProvider({ children }) {
     });
   }
 
-  async function ADD(data) {
+  async function ADD(data, reset) {
     await api
       .post("/veiculos", data)
       .then(() => {
+        reset();
         setIsModal(false);
         GetAll();
       })
       .catch((err) => console.log(err));
   }
 
-  async function editVehicle(data, id) {
+  async function editVehicle(data, id, reset) {
     await api
       .patch(`/veiculos/${id}`, data)
       .then(() => {
+        reset();
         setIsModalEdit(false);
-        setVehicleById();
+        GetById(id);
         GetAll();
       })
       .catch((err) => console.log(err));

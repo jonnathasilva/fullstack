@@ -25,11 +25,12 @@ function Edit({ vehicleById }) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
   function Submit(data) {
-    editVehicle(data, vehicleById?._id);
+    editVehicle(data, vehicleById?._id, reset);
   }
 
   return (
@@ -92,7 +93,14 @@ function Edit({ vehicleById }) {
               Excluir
             </button>
             <input type="submit" value="EDITAR" />
-            <button onClick={modalEdit}>Fecha</button>
+            <button
+              onClick={() => {
+                modalEdit();
+                reset();
+              }}
+            >
+              Fecha
+            </button>
           </div>
         </C.Form>
       </C.Container>
