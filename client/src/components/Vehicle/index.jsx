@@ -1,7 +1,8 @@
 import * as C from "./index.styles";
 import { BsTagFill } from "react-icons/bs";
+import { getById } from "../../api";
 
-function Vehicles({ vehicle, GetById }) {
+function Vehicles({ vehicle }) {
   return (
     <C.Vehicle>
       <h3>Lista de veículos</h3>
@@ -11,7 +12,7 @@ function Vehicles({ vehicle, GetById }) {
           <C.Cart
             key={vehicle._id}
             onClick={() => {
-              GetById(vehicle?._id);
+              getById(vehicle?._id);
             }}
           >
             <h4>{vehicle.brand}</h4>

@@ -10,7 +10,7 @@ import Add from "../Modal/Create";
 import Edit from "../Modal/Edit";
 
 function Main() {
-  const { vehicle, GetById, vehicleById, modal, modalEdit } =
+  const { vehicle, GetById, vehicleById, modal, modalEdit, isModal, ADD } =
     useContext(Context);
 
   return (
@@ -34,7 +34,7 @@ function Main() {
         )}
       </C.ContainerVehicle>
 
-      <Add />
+      <Add modal={modal} isModal={isModal} ADD={ADD} />
       {vehicleById ? <Edit vehicleById={vehicleById} /> : ""}
     </C.Container>
   );

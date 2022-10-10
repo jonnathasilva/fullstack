@@ -1,16 +1,15 @@
-import * as C from "./index.styles";
-import { useContext } from "react";
+import * as styled from "./index.styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+import { add } from "../../../api";
 import * as yup from "yup";
 
 import Input from "../../Input";
 import InputCheckbox from "../../InputCheckbox";
-import { Context } from "../../../context/ContexteAPI";
 
 const schema = yup.object({
-  vehicle: yup.string().required("Obrigatório!"),
+  vehicle: yup.string().required("Obrigatório"),
   brand: yup.string().required("Obrigatório"),
   year: yup
     .string()
@@ -20,8 +19,7 @@ const schema = yup.object({
   description: yup.string().required("Obrigatório"),
 });
 
-function Add() {
-  const { modal, isModal, ADD } = useContext(Context);
+function Add({ modal, isModal }) {
   const {
     register,
     handleSubmit,
@@ -30,15 +28,15 @@ function Add() {
   } = useForm({ resolver: yupResolver(schema) });
 
   function Submit(data) {
-    ADD(data, reset);
+    add(data, reset);
   }
 
   return (
-    <C.Modal isModal={isModal}>
-      <C.Container>
+    <styled.Modal isModal={isModal}>
+      <styled.Container>
         <h2>Novo Veículo</h2>
 
-        <C.Form onSubmit={handleSubmit(Submit)}>
+        <styled.Form onSubmit={handleSubmit(Submit)}>
           <Input
             name="vehicle"
             placeholder="Veículo"
@@ -90,9 +88,9 @@ function Add() {
               Fecha
             </button>
           </div>
-        </C.Form>
-      </C.Container>
-    </C.Modal>
+        </styled.Form>
+      </styled.Container>
+    </styled.Modal>
   );
 }
 
