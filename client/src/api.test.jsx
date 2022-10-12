@@ -1,4 +1,4 @@
-import { describe, it } from "vitest";
+import { describe, expect, it } from "vitest";
 import { getAll, add } from "./api";
 
 import axios from "axios";
@@ -24,12 +24,10 @@ describe("APi", () => {
       },
     ];
 
-    // axios.get.mockResolvedValueOnce(data);
     axios.get.mockResolvedValue(data);
 
     const result = await getAll();
 
-    // then
     expect(axios.get).toHaveBeenCalledWith("http://localhost:5000/veiculos");
     expect(result).toEqual(data);
   });
@@ -48,8 +46,6 @@ describe("APi", () => {
     axios.post.mockResolvedValue(data);
 
     const result = await add(data);
-
-    console.log(result, axios.get);
 
     expect(axios.post).toHaveBeenCalledWith(
       "http://localhost:5000/veiculos",
