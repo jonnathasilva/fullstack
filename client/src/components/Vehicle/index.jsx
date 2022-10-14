@@ -1,8 +1,7 @@
 import * as C from "./index.styles";
 import { BsTagFill } from "react-icons/bs";
-import { getById } from "../../api";
 
-function Vehicles({ vehicle }) {
+function Vehicles({ vehicle, getById }) {
   return (
     <C.Vehicle>
       <h3>Lista de veículos</h3>

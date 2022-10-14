@@ -1,13 +1,12 @@
-import * as C from "../Create/index.styles";
-import { useContext } from "react";
+import * as styles from "../Create/index.styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import * as yup from "yup";
+import api from "../../../api";
 
 import Input from "../../Input";
 import InputCheckbox from "../../InputCheckbox";
-import { Context } from "../../../context/ContexteAPI";
 
 const schema = yup.object({
   vehicle: yup.string().required("Obrigatório"),
@@ -20,25 +19,29 @@ const schema = yup.object({
   description: yup.string().required("Obrigatório"),
 });
 
-function Edit({ vehicleById }) {
-  const { isModalEdit, modalEdit, editVehicle, Delete } = useContext(Context);
+function Edit({ vehicleById, isModalEdit }) {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
+  const { deleteById, editVehicle } = api();
 
   function Submit(data) {
-    editVehicle(data, vehicleById?._id, reset);
+    editVehicle(data, vehicleById._id);
+  }
+
+  function deleteVehicle(id) {
+    deleteById(id);
   }
 
   return (
-    <C.Modal isModal={isModalEdit}>
-      <C.Container>
+    <styles.Modal isModal={isModalEdit}>
+      <styles.Container>
         <h2>Editar Veículo</h2>
 
-        <C.Form onSubmit={handleSubmit(Submit)}>
+        <styles.Form onSubmit={handleSubmit(Submit)}>
           <Input
             name="vehicle"
             placeholder="Veículo"
@@ -87,7 +90,7 @@ function Edit({ vehicleById }) {
           <div className="submit">
             <button
               onClick={() => {
-                Delete(vehicleById._id);
+                deleteVehicle(vehicleById._id);
               }}
             >
               Excluir
@@ -102,9 +105,9 @@ function Edit({ vehicleById }) {
               Fecha
             </button>
           </div>
-        </C.Form>
-      </C.Container>
-    </C.Modal>
+        </styles.Form>
+      </styles.Container>
+    </styles.Modal>
   );
 }
 

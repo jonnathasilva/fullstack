@@ -2,7 +2,7 @@ import * as styled from "./index.styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { add } from "../../../api";
+import axios from "axios";
 import * as yup from "yup";
 
 import Input from "../../Input";
@@ -19,7 +19,7 @@ const schema = yup.object({
   description: yup.string().required("Obrigatório"),
 });
 
-function Add({ modal, isModal }) {
+function Add({ modal, isModal, getAll }) {
   const {
     register,
     handleSubmit,
@@ -27,8 +27,17 @@ function Add({ modal, isModal }) {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  function Submit(data) {
-    add(data, reset);
+  async function Submit(data) {
+    await axios({
+      method: "POST",
+      baseURL: import.meta.env.VITE_URL,
+      url: "/veiculos",
+      data,
+    }).then(() => {
+      getAll();
+      modal();
+    });
+    reset();
   }
 
   return (

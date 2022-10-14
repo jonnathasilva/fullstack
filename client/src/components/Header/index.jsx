@@ -1,11 +1,12 @@
-import { useContext, useState } from "react";
-import { Context } from "../../context/ContexteAPI";
-import * as C from "./index.styles";
+import { useState } from "react";
+import * as styles from "./index.styles";
 import { MdOutlineWaterDrop } from "react-icons/md";
+
+import api from "../../api";
 
 function Header() {
   const [search, setSearch] = useState();
-  const { GetSearch } = useContext(Context);
+  const { getSearch } = api();
 
   function Search(e) {
     setSearch(e.target.value);
@@ -13,16 +14,16 @@ function Header() {
 
   function handleOnChange(e) {
     e.preventDefault();
-    GetSearch(search);
+    getSearch(search);
   }
 
   return (
-    <C.Container>
-      <C.SectionLogo>
+    <styles.Container>
+      <styles.SectionLogo>
         <MdOutlineWaterDrop size={40} color={"#FFF"} />
         <h1>Fullstack</h1>
-      </C.SectionLogo>
-      <C.SectionSearch onSubmit={handleOnChange}>
+      </styles.SectionLogo>
+      <styles.SectionSearch onSubmit={handleOnChange}>
         <label htmlFor="search">Busca por um veículo</label>
         <input
           type="search"
@@ -31,8 +32,8 @@ function Header() {
           placeholder="BUSCA por um veículo"
           onChange={Search}
         />
-      </C.SectionSearch>
-    </C.Container>
+      </styles.SectionSearch>
+    </styles.Container>
   );
 }
 
