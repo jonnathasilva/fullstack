@@ -22,7 +22,13 @@ describe("Modal Edit", () => {
     axios = vi.fn(() => Promise.resolve({}));
 
     const { getByDisplayValue } = render(
-      <Edit vehicleById={data} isModalEdit={true} />
+      <Edit
+        vehicleById={data}
+        isModalEdit={true}
+        getAll={axios}
+        setVehicleById={vi.fn()}
+        modalEdit={vi.fn()}
+      />
     );
 
     const inputVehicle = getByDisplayValue("Tesla");
@@ -55,7 +61,13 @@ describe("Modal Edit", () => {
   it("should delete a data", async () => {
     axios = vi.fn(() => Promise.resolve());
     const { getByText, debug } = render(
-      <Edit vehicleById={data} isModalEdit={true} />
+      <Edit
+        vehicleById={data}
+        isModalEdit={true}
+        getAll={axios}
+        setVehicleById={vi.fn()}
+        modalEdit={vi.fn()}
+      />
     );
 
     const button = getByText("Excluir");

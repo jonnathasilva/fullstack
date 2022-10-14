@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import * as styles from "./index.styles";
 import { MdOutlineAddCircle } from "react-icons/md";
 import axios from "axios";
@@ -7,13 +7,12 @@ import Vehicles from "../Vehicle";
 import VehicleInfo from "../VehicleInfo";
 import Add from "../Modal/Create";
 import Edit from "../Modal/Edit";
-import { useEffect } from "react";
+import { Context } from "../../context/ContexteAPI";
 
 function Main() {
   const [isModal, setIsModal] = useState(false);
   const [isModalEdit, setIsModalEdit] = useState(false);
-
-  const [vehicle, setVehicle] = useState([]);
+  const { vehicle, getVehicle } = useContext(Context);
   const [vehicleById, setVehicleById] = useState();
 
   function modal() {
@@ -22,14 +21,6 @@ function Main() {
 
   function modalEdit() {
     setIsModalEdit(isModalEdit ? false : true);
-  }
-
-  function getVehicle() {
-    axios({
-      method: "GET",
-      baseURL: import.meta.env.VITE_URL,
-      url: "/veiculos",
-    }).then(({ data }) => setVehicle(data));
   }
 
   function geById(id) {

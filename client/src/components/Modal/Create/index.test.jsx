@@ -14,7 +14,14 @@ describe("Create Modal", () => {
     axios = vi.fn(() => Promise.resolve({ id: 1 }));
 
     const { getByPlaceholderText, getByDisplayValue, findByDisplayValue } =
-      render(<Create isModal={true} getAll={axios} />);
+      render(
+        <Create
+          isModal={true}
+          setVehicleById={vi.fn()}
+          modal={vi.fn()}
+          getAll={axios}
+        />
+      );
 
     const inputVehicle = getByPlaceholderText("Veículo");
     const inputBrand = getByPlaceholderText("Marca");

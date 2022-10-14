@@ -1,25 +1,26 @@
-import { Children, createContext, useEffect, useState } from "react";
-import api from "../utils/api";
+import { createContext, useState } from "react";
+
+import axios from "axios";
 
 const Context = createContext();
 
 function APIProvider({ children }) {
-  const [isModal, setIsModal] = useState(false);
-  const [isModalEdit, setIsModalEdit] = useState(false);
+  const [vehicle, setVehicle] = useState([]);
 
-  function modal() {
-    setIsModal(isModal ? false : true);
-  }
-
-  function modalEdit() {
-    setIsModalEdit(isModalEdit ? false : true);
+  function getVehicle() {
+    axios({
+      method: "GET",
+      baseURL: import.meta.env.VITE_URL,
+      url: "/veiculos",
+    }).then(({ data }) => setVehicle(data));
   }
 
   return (
     <Context.Provider
       value={{
-        modalEdit,
-        isModalEdit,
+        getVehicle,
+        setVehicle,
+        vehicle,
       }}
     >
       {children}

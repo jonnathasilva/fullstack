@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import * as styles from "./index.styles";
 import { MdOutlineWaterDrop } from "react-icons/md";
-
 import axios from "axios";
+
+import { Context } from "../../context/ContexteAPI";
 
 function Header() {
   const [search, setSearch] = useState();
+  const { setVehicle } = useContext(Context);
 
   function Search(e) {
     setSearch(e.target.value);
@@ -14,11 +16,11 @@ function Header() {
   function handleOnChange(e) {
     e.preventDefault();
     axios({
-      method: "GET",
+      method: "POST",
       baseURL: import.meta.env.VITE_URL,
       url: "/veiculos/find",
-      data: search,
-    });
+      data: { search },
+    }).then(({ data }) => setVehicle(data));
   }
 
   return (
