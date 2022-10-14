@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import * as yup from "yup";
-import api from "../../../api";
+import axios from "axios";
 
 import Input from "../../Input";
 import InputCheckbox from "../../InputCheckbox";
@@ -19,21 +19,40 @@ const schema = yup.object({
   description: yup.string().required("Obrigatório"),
 });
 
-function Edit({ vehicleById, isModalEdit }) {
+function Edit({ vehicleById, isModalEdit, modalEdit, getAll, setVehicleById }) {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-  const { deleteById, editVehicle } = api();
 
   function Submit(data) {
-    editVehicle(data, vehicleById._id);
+    axios({
+      method: "PATCH",
+      baseURL: import.meta.env.VITE_URL,
+      url: `/veiculos/${vehicleById._id}`,
+      data,
+    })
+      .then(() => {
+        setVehicleById("");
+        getAll();
+        modalEdit();
+      })
+      .catch((err) => console.log(err));
   }
 
   function deleteVehicle(id) {
-    deleteById(id);
+    axios({
+      method: "DELETE",
+      baseURL: import.meta.env.VITE_URL,
+      url: `/veiculos/${id}`,
+    })
+      .then(() => {
+        modalEdit();
+        setVehicleById();
+        getAll();
+      })
+      .catch((err) => console.log(err));
   }
 
   return (
@@ -89,19 +108,17 @@ function Edit({ vehicleById, isModalEdit }) {
 
           <div className="submit">
             <button
+              type="button"
               onClick={() => {
                 deleteVehicle(vehicleById._id);
               }}
             >
               Excluir
             </button>
+
             <input type="submit" value="EDITAR" />
-            <button
-              onClick={() => {
-                modalEdit();
-                reset();
-              }}
-            >
+
+            <button type="button" onClick={modalEdit}>
               Fecha
             </button>
           </div>

@@ -1,4 +1,3 @@
-// import { useContext } from "react";
 import { useState } from "react";
 import * as styles from "./index.styles";
 import { MdOutlineAddCircle } from "react-icons/md";
@@ -15,9 +14,7 @@ function Main() {
   const [isModalEdit, setIsModalEdit] = useState(false);
 
   const [vehicle, setVehicle] = useState([]);
-  const [vehicleById, setVehicleById] = useState([]);
-
-  console.log(isModal);
+  const [vehicleById, setVehicleById] = useState();
 
   function modal() {
     setIsModal(isModal ? false : true);
@@ -70,9 +67,28 @@ function Main() {
         )}
       </styles.ContainerVehicle>
 
-      <Add modal={modal} isModal={isModal} getAll={getVehicle} />
+      {isModal ? (
+        <Add
+          modal={modal}
+          isModal={isModal}
+          getAll={getVehicle}
+          setVehicleById={setVehicleById}
+        />
+      ) : (
+        " "
+      )}
 
-      {vehicleById ? <Edit vehicleById={vehicleById} /> : " "}
+      {isModalEdit ? (
+        <Edit
+          vehicleById={vehicleById}
+          setVehicleById={setVehicleById}
+          isModalEdit={isModalEdit}
+          modalEdit={modalEdit}
+          getAll={getVehicle}
+        />
+      ) : (
+        " "
+      )}
     </styles.Container>
   );
 }

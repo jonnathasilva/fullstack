@@ -19,11 +19,10 @@ const schema = yup.object({
   description: yup.string().required("Obrigatório"),
 });
 
-function Add({ modal, isModal, getAll }) {
+function Add({ modal, isModal, getAll, setVehicleById }) {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
@@ -35,9 +34,9 @@ function Add({ modal, isModal, getAll }) {
       data,
     }).then(() => {
       getAll();
+      setVehicleById();
       modal();
     });
-    reset();
   }
 
   return (
@@ -88,12 +87,8 @@ function Add({ modal, isModal, getAll }) {
 
           <div className="submit">
             <input type="submit" value="ADD" />
-            <button
-              onClick={() => {
-                modal();
-                reset();
-              }}
-            >
+
+            <button type="button" onClick={modal}>
               Fecha
             </button>
           </div>

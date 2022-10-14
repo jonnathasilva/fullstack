@@ -2,11 +2,10 @@ import { useState } from "react";
 import * as styles from "./index.styles";
 import { MdOutlineWaterDrop } from "react-icons/md";
 
-import api from "../../api";
+import axios from "axios";
 
 function Header() {
   const [search, setSearch] = useState();
-  const { getSearch } = api();
 
   function Search(e) {
     setSearch(e.target.value);
@@ -14,7 +13,12 @@ function Header() {
 
   function handleOnChange(e) {
     e.preventDefault();
-    getSearch(search);
+    axios({
+      method: "GET",
+      baseURL: import.meta.env.VITE_URL,
+      url: "/veiculos/find",
+      data: search,
+    });
   }
 
   return (
