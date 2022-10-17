@@ -1,8 +1,14 @@
-import * as C from "./index.styles";
+import * as styles from "./index.styles";
 
-function InputCheckbox({ register, type, name, placeholder, checked }) {
+export const InputCheckbox = ({
+  register,
+  type,
+  name,
+  placeholder,
+  checked,
+}) => {
   return (
-    <C.Container>
+    <styles.Container>
       <label htmlFor={name}>{placeholder}</label>
       <input
         type={type}
@@ -12,8 +18,6 @@ function InputCheckbox({ register, type, name, placeholder, checked }) {
         defaultChecked={checked}
         {...register(`${name}`)}
       />
-    </C.Container>
+    </styles.Container>
   );
-}
-
-export default InputCheckbox;
+};

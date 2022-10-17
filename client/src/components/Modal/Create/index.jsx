@@ -1,12 +1,11 @@
 import * as styled from "./index.styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import axios from "axios";
 import * as yup from "yup";
 
-import Input from "../../Input";
-import InputCheckbox from "../../InputCheckbox";
+import { Input } from "~/components/Input";
+import { InputCheckbox } from "~/components/InputCheckbox";
 
 const schema = yup.object({
   vehicle: yup.string().required("Obrigatório"),
@@ -19,7 +18,7 @@ const schema = yup.object({
   description: yup.string().required("Obrigatório"),
 });
 
-function Add({ modal, isModal, getAll, setVehicleById }) {
+export const Add = ({ modal, isModal, getAll, setVehicleById }) => {
   const {
     register,
     handleSubmit,
@@ -96,6 +95,4 @@ function Add({ modal, isModal, getAll, setVehicleById }) {
       </styled.Container>
     </styled.Modal>
   );
-}
-
-export default Add;
+};

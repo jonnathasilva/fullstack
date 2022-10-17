@@ -1,9 +1,8 @@
 import { APIProvider } from "./context/ContexteAPI";
+import { Header } from "./components";
+import { Main } from "./components/Main";
 
-import Header from "./components/Header";
-import Main from "./components/Main";
-
-function App() {
+export const App = () => {
   return (
     <div className="ContainerMain">
       <APIProvider>
@@ -12,6 +11,4 @@ function App() {
       </APIProvider>
     </div>
   );
-}
-
-export default App;
+};

@@ -1,6 +1,6 @@
-import * as C from "./index.styles";
+import * as styles from "./index.styles";
 
-function Input({
+export const Input = ({
   register,
   type,
   name,
@@ -8,9 +8,9 @@ function Input({
   value,
   errorName,
   isDescription,
-}) {
+}) => {
   return (
-    <C.Container isDescription={isDescription}>
+    <styles.Container isDescription={isDescription}>
       <label htmlFor={name}>{placeholder}</label>
       <input
         type={type}
@@ -21,8 +21,6 @@ function Input({
         {...register(`${name}`)}
       />
       <p>{errorName}</p>
-    </C.Container>
+    </styles.Container>
   );
-}
-
-export default Input;
+};

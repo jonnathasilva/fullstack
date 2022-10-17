@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 
 import axios from "axios";
+import { useEffect } from "react";
 
 const Context = createContext();
 
@@ -14,6 +15,8 @@ function APIProvider({ children }) {
       url: "/veiculos",
     }).then(({ data }) => setVehicle(data));
   }
+
+  useEffect(() => getVehicle(), []);
 
   return (
     <Context.Provider

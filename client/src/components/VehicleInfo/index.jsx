@@ -1,13 +1,13 @@
-import * as C from "./index.styles";
+import * as styles from "./index.styles";
 import { BsTagFill } from "react-icons/bs";
 import { RiPencilFill } from "react-icons/ri";
 
-function VehicleInfo({ vehicleById, modalEdit }) {
+export const VehicleInfo = ({ vehicleById, modalEdit }) => {
   return (
-    <C.Vehicle>
+    <styles.Vehicle>
       <h3>Detalhes</h3>
 
-      <C.Info>
+      <styles.Info>
         <h2>{vehicleById?.vehicle}</h2>
 
         <div className="ContainerSubInfo">
@@ -23,15 +23,13 @@ function VehicleInfo({ vehicleById, modalEdit }) {
         </div>
 
         <p id="description">{vehicleById?.description}</p>
-      </C.Info>
-      <C.Buttons>
-        <button
-          onClick={() => {
-            modalEdit();
-          }}
-        >
+      </styles.Info>
+
+      <styles.Buttons>
+        <button onClick={modalEdit}>
           <RiPencilFill size={23} /> editar
         </button>
+
         <BsTagFill
           size={25}
           style={{
@@ -39,9 +37,7 @@ function VehicleInfo({ vehicleById, modalEdit }) {
             marginRight: "15px",
           }}
         />
-      </C.Buttons>
-    </C.Vehicle>
+      </styles.Buttons>
+    </styles.Vehicle>
   );
-}
-
-export default VehicleInfo;
+};

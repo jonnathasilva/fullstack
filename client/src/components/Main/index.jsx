@@ -1,15 +1,15 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import * as styles from "./index.styles";
 import { MdOutlineAddCircle } from "react-icons/md";
 import axios from "axios";
 
-import Vehicles from "../Vehicle";
-import VehicleInfo from "../VehicleInfo";
-import Add from "../Modal/Create";
-import Edit from "../Modal/Edit";
+import { Vehicles } from "~/components/Vehicle";
+import { VehicleInfo } from "~/components/VehicleInfo";
+import { Add } from "~/components/Modal/Create";
+import { Edit } from "~/components/Modal/Edit";
 import { Context } from "../../context/ContexteAPI";
 
-function Main() {
+export const Main = () => {
   const [isModal, setIsModal] = useState(false);
   const [isModalEdit, setIsModalEdit] = useState(false);
   const { vehicle, getVehicle } = useContext(Context);
@@ -33,14 +33,11 @@ function Main() {
     });
   }
 
-  useEffect(() => {
-    getVehicle();
-  }, []);
-
   return (
     <styles.Container>
       <styles.Header>
         <h2>Veículo</h2>
+
         <MdOutlineAddCircle
           onClick={modal}
           size={30}
@@ -82,6 +79,4 @@ function Main() {
       )}
     </styles.Container>
   );
-}
-
-export default Main;
+};

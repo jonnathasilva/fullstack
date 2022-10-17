@@ -1,33 +1,29 @@
-import * as C from "./index.styles";
+import * as styles from "./index.styles";
 import { BsTagFill } from "react-icons/bs";
 
-function Vehicles({ vehicle, getById }) {
+export const Vehicles = ({ vehicle, getById }) => {
   return (
-    <C.Vehicle>
+    <styles.Vehicle>
       <h3>Lista de veículos</h3>
 
-      <C.AllVehicle>
+      <styles.AllVehicle>
         {vehicle?.map((vehicle) => (
-          <C.Cart
-            key={vehicle._id}
-            onClick={() => {
-              getById(vehicle?._id);
-            }}
-          >
+          <styles.Cart key={vehicle._id} onClick={() => getById(vehicle?._id)}>
             <h4>{vehicle.brand}</h4>
+
             <div>
               <p>{vehicle.vehicle}</p>
+
               <BsTagFill
                 size={25}
                 style={{ color: vehicle?.sold ? "#49886e" : "#354046" }}
               />
             </div>
-            <p>{vehicle.year}</p>
-          </C.Cart>
-        ))}
-      </C.AllVehicle>
-    </C.Vehicle>
-  );
-}
 
-export default Vehicles;
+            <p>{vehicle.year}</p>
+          </styles.Cart>
+        ))}
+      </styles.AllVehicle>
+    </styles.Vehicle>
+  );
+};

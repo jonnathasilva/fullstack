@@ -1,12 +1,11 @@
 import * as styles from "../Create/index.styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import * as yup from "yup";
 import axios from "axios";
 
-import Input from "../../Input";
-import InputCheckbox from "../../InputCheckbox";
+import { Input } from "~/components/Input";
+import { InputCheckbox } from "~/components/InputCheckbox";
 
 const schema = yup.object({
   vehicle: yup.string().required("Obrigatório"),
@@ -19,7 +18,13 @@ const schema = yup.object({
   description: yup.string().required("Obrigatório"),
 });
 
-function Edit({ vehicleById, isModalEdit, modalEdit, getAll, setVehicleById }) {
+export const Edit = ({
+  vehicleById,
+  isModalEdit,
+  modalEdit,
+  getAll,
+  setVehicleById,
+}) => {
   const {
     register,
     handleSubmit,
@@ -109,9 +114,7 @@ function Edit({ vehicleById, isModalEdit, modalEdit, getAll, setVehicleById }) {
           <div className="submit">
             <button
               type="button"
-              onClick={() => {
-                deleteVehicle(vehicleById._id);
-              }}
+              onClick={() => deleteVehicle(vehicleById._id)}
             >
               Excluir
             </button>
@@ -126,6 +129,4 @@ function Edit({ vehicleById, isModalEdit, modalEdit, getAll, setVehicleById }) {
       </styles.Container>
     </styles.Modal>
   );
-}
-
-export default Edit;
+};
